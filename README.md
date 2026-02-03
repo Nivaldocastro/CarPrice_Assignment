@@ -62,6 +62,43 @@ Facilita a criação de gráficos mais elegantes, como mapas de correlação, bo
 ```python
 import matplotlib.pyplot as plt
 ```
+NumPy: Biblioteca fundamental para operações numéricas e matemáticas em Python.
+Foi utilizada para cálculos como o RMSE, manipulação de arrays e operações vetoriais.
+```python
+import numpy as np
+```
+train_test_split: Função do scikit-learn utilizada para dividir o dataset em conjuntos de treino e teste, garantindo uma avaliação adequada do modelo.
+```python
+from sklearn.model_selection import train_test_split
+```
+StandardScaler: Utilizada para padronização dos dados numéricos, fazendo com que todas as variáveis tenham média 0 e desvio padrão 1.
+Essa etapa é essencial para modelos sensíveis à escala, como Ridge e Lasso.
+```python
+from sklearn.preprocessing import StandardScaler
+```
+LinearRegression: Modelo de Regressão Linear do scikit-learn.
+Foi aplicado tanto na regressão linear simples quanto na regressão linear múltipla.
+```python
+from sklearn.linear_model import LinearRegression
+```
+Ridge Regression: Modelo de regressão linear com regularização L2, utilizado para reduzir overfitting e controlar a magnitude dos coeficientes.
+```python
+from sklearn.linear_model import Ridge
+```
+Lasso Regression: Modelo de regressão linear com regularização L1, capaz de zerar coeficientes, sendo útil para seleção de atributos e análise de importância das variáveis.
+```python
+from sklearn.linear_model import Lasso
+```
+cross_val_score: Função utilizada para aplicar validação cruzada (cross-validation), permitindo avaliar o desempenho dos modelos de forma mais robusta.
+```python
+from sklearn.model_selection import cross_val_score
+```
+Métricas de Avaliação: Foram utilizadas métricas para avaliar o desempenho dos modelos de regressão:
+RMSE (Root Mean Squared Error): mede o erro médio das previsões.
+R² (Coeficiente de Determinação): indica o quanto o modelo explica a variabilidade da variável alvo.
+```python
+from sklearn.metrics import mean_squared_error, r2_score
+```
 
 ---
 
