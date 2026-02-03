@@ -8,10 +8,10 @@ aplicar um modelo de regressão linear, avaliar seu desempenho, e visualizar a r
 ## 📁 Estrutura do Projeto
 
 ```
-├── preprocessamento.py   # Pré-processamento e correlação
+├── preprocessamento.py           # Pré-processamento e correlação
 ├── regressao_linear_simples.py   # Regressão linear simples
-├── linear_ridge_lasso.py   # Linear vs Ridge vs Lasso
-├── coeficientes.py   # Coeficientes e seleção de atributos
+├── linear_ridge_lasso.py         # Linear vs Ridge vs Lasso
+├── coeficientes.py               # Coeficientes e seleção de atributos
 ├── regressao_ajustado.csv
 └── README.md
 ```
