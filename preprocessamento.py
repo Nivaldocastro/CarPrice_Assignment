@@ -3,7 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Carregamento do dataset
-df = pd.read_csv("C:/Users/jfm12/Projetos_UFC/datasets/CarPrice_Assignment.csv")
+df = pd.read_csv("CarPrice_Assignment.csv")
 print(df.head())
 print(df.dtypes)
 
@@ -34,4 +34,5 @@ plt.show()
 
 # Salvar arquivo ajustado
 df.to_csv('CarPrice_dataset_ajustado.csv', index=False)
+
 print("Arquivo 'CarPrice_dataset_ajustado.csv' salvo com sucesso!")
