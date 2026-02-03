@@ -154,7 +154,8 @@ highwaympg         -0.697599
 ```
 Além da correlação individual com a variável alvo, foi construída uma matriz de correlação completa, considerando todas as colunas numéricas do dataset.
 Foi utilizado o método de correlação Spearman, por ser mais robusto a relações não lineares e valores extremos.
-\Imagens\matriz_correlação.png
+
+![Matriz de Correlação](images/matriz_correlação.png)
 
 
 
