@@ -1,6 +1,7 @@
 # Projeto de Regressão Linear, Ridge e Lasso
 
-Este projeto tem como objetivo aplicar técnicas de **regressão linear** para prever o preço de veículos, seguindo uma sequência estruturada de pré-processamento, modelagem, avaliação e interpretação dos resultados. O trabalho foi desenvolvido com base em quatro questões principais, descritas a seguir.
+Este projeto tem como objetivo aplicar técnicas de **regressão linear** para prever o preço de veículos, seguindo uma sequência estruturada de pré-processamento, modelagem, avaliação e interpretação dos resultados. O trabalho foi desenvolvido com base no dataset Car Price Prediction, disponibilizado no Kaggle. O foco do projeto não é uma análise exploratória aprofundada, mas sim compreender o dataset, preparar os dados corretamente,
+aplicar um modelo de regressão linear, avaliar seu desempenho, e visualizar a relação entre a variável mais correlacionada e o preço.
 
 ---
 
@@ -14,6 +15,29 @@ Este projeto tem como objetivo aplicar técnicas de **regressão linear** para p
 ├── regressao_ajustado.csv
 └── README.md
 ```
+
+---
+## 📂 Dataset
+
+Fonte: Kaggle
+
+Link: https://www.kaggle.com/datasets/hellbuoy/car-price-prediction
+
+Nome do arquivo original: CarPrice_Assignment.csv
+
+O dataset contém informações de diferentes automóveis, incluindo características como:
+
+tipo de combustível,
+
+tamanho do motor,
+
+potência,
+
+consumo,
+
+dimensões do veículo,
+
+e o preço (variável alvo).
 
 ---
 
