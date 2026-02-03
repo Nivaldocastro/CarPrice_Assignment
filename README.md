@@ -104,19 +104,60 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 ## Pré-processamento e Correlação
 
-**Arquivo:** `regressao_q1.py`
+**Arquivo:** `preprocessamento.py`
 
 Nesta etapa inicial, foi realizado o preparo dos dados para a modelagem:
 
 1. O dataset original foi carregado.
-```python
-df = pd.read_csv("CarPrice_dataset_ajustado.csv")
-print(df.head(), '\n')
-print(df.shape)
-```
+Inicialmente, o dataset bruto foi carregado utilizando a biblioteca Pandas, e foram realizadas inspeções básicas para compreender sua estrutura:
+* Visualização das primeiras linhas do dataset (head)
+* Verificação dos tipos de dados de cada coluna
+* Verificação de valores ausentes (missing values)
+Essa etapa permitiu confirmar que o dataset não possui valores nulos, eliminando a necessidade de técnicas de imputação.
 
-2. Foram tratados valores ausentes, garantindo consistência dos dados.
-3. Foi calculada a matriz de correlação entre as variáveis numéricas e a variável-alvo (`price`).
+2. Tratamento de variáveis categóricas
+O dataset contém diversas variáveis categóricas, como tipo de combustível, carroceria, tipo de motor e sistema de combustível. Como modelos de regressão não trabalham diretamente com dados categóricos em formato textual, foi necessário convertê-los para valores numéricos.
+As seguintes colunas categóricas foram identificadas:
+* CarName
+* fueltype
+* aspiration
+* doornumber
+* carbody
+* drivewheel
+* enginelocation
+* enginetype
+* cylindernumber
+* fuelsystem
+Para isso, foi utilizado o método `pd.factorize()`, que transforma cada categoria em um valor inteiro único. Esse método foi escolhido por ser simples e suficiente para esta etapa exploratória e de modelagem inicial.
+Após a conversão, todas as colunas do dataset passaram a possuir valores numéricos.
+
+3. Análise de Correlação e matriz de correlação entre as variáveis numéricas e a variável-alvo (`price`).
+Com os dados totalmente numéricos, foi realizada uma análise de correlação entre todas as variáveis e a variável alvo price.
+Essa análise teve como objetivo:
+Identificar quais atributos possuem maior relação com o preço dos veículos
+Auxiliar na seleção das variáveis mais relevantes para os modelos de regressão
+As correlações foram ordenadas de forma decrescente, permitindo identificar rapidamente as variáveis mais correlacionadas positiva ou negativamente com o preço.
+
+```
+Correlação das variáveis com Price:
+ price               1.000000
+enginesize          0.874145
+curbweight          0.835305
+horsepower          0.808139
+carwidth            0.759325
+carlength           0.682920
+...                   ...
+fuelsystem         -0.122118
+drivewheel         -0.577992
+citympg            -0.685751
+highwaympg         -0.697599
+```
+Além da correlação individual com a variável alvo, foi construída uma matriz de correlação completa, considerando todas as colunas numéricas do dataset.
+Foi utilizado o método de correlação Spearman, por ser mais robusto a relações não lineares e valores extremos.
+\Imagens\matriz_correlação.png
+
+
+
 4. Com base na correlação, foi possível identificar quais atributos possuem maior relação com o preço.
 5. Os dados numéricos foram padronizados utilizando o `StandardScaler`, garantindo média zero e desvio padrão igual a um.
 6. O dataset final pré-processado foi salvo no arquivo `regressao_ajustado.csv`.
