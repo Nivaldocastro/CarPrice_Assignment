@@ -27,17 +27,17 @@ Nome do arquivo original: CarPrice_Assignment.csv
 
 O dataset contém informações de diferentes automóveis, incluindo características como:
 
-tipo de combustível,
+* tipo de combustível
 
-tamanho do motor,
+* tamanho do motor
 
-potência,
+* potência
 
-consumo,
+* consumo
 
-dimensões do veículo,
+* dimensões do veículo
 
-e o preço (variável alvo).
+* preço (variável alvo)
 
 ---
 
