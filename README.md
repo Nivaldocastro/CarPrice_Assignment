@@ -7,10 +7,10 @@ Este projeto tem como objetivo aplicar técnicas de **regressão linear** para p
 ## 📁 Estrutura do Projeto
 
 ```
-├── regressao_q1.py   # Pré-processamento e correlação
-├── regressao_q2.py   # Regressão linear simples
-├── regressao_q3.py   # Linear vs Ridge vs Lasso
-├── regressao_q4.py   # Coeficientes e seleção de atributos
+├── preprocessamento.py   # Pré-processamento e correlação
+├── regressao_linear_simples.py   # Regressão linear simples
+├── linear_ridge_lasso.py   # Linear vs Ridge vs Lasso
+├── coeficientes.py   # Coeficientes e seleção de atributos
 ├── regressao_ajustado.csv
 └── README.md
 ```
