@@ -41,13 +41,43 @@ O dataset contém informações de diferentes automóveis, incluindo caracterís
 
 ---
 
-## Questão 1 – Pré-processamento e Correlação
+## Bibliotecas utilizadas
+
+Este projeto foi desenvolvido em Python utilizando bibliotecas amplamente empregadas em análise de dados e aprendizado de máquina, conforme descrito abaixo:
+
+---
+
+Pandas: Biblioteca utilizada para carregamento, manipulação e análise de dados tabulares.
+Permite ler arquivos CSV, tratar colunas, selecionar variáveis e realizar análises estatísticas básicas.
+```python
+import pandas as pd
+```
+Matplotlib: Biblioteca fundamental para criação de gráficos em Python.
+Foi utilizada para plotar gráficos de dispersão, retas de regressão e gráficos de importância dos atributos.
+```python
+import seaborn as pd
+```
+Seaborn: Biblioteca de visualização estatística baseada no matplotlib.
+Facilita a criação de gráficos mais elegantes, como mapas de correlação, boxplots e distribuições.
+```python
+import matplotlib.pyplot as plt
+```
+
+---
+
+## Pré-processamento e Correlação
 
 **Arquivo:** `regressao_q1.py`
 
 Nesta etapa inicial, foi realizado o preparo dos dados para a modelagem:
 
 1. O dataset original foi carregado.
+```python
+df = pd.read_csv("CarPrice_dataset_ajustado.csv")
+print(df.head(), '\n')
+print(df.shape)
+```
+
 2. Foram tratados valores ausentes, garantindo consistência dos dados.
 3. Foi calculada a matriz de correlação entre as variáveis numéricas e a variável-alvo (`price`).
 4. Com base na correlação, foi possível identificar quais atributos possuem maior relação com o preço.
