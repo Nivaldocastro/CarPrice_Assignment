@@ -203,15 +203,51 @@ Essa análise fornece uma visualização clara da relação linear entre a vari�
 
 **Arquivo:** `linear_ridge_lasso.py`
 
-Nesta fase, o objetivo foi comparar diferentes modelos de regressão:
+Após a aplicação da regressão linear simples, foram avaliados modelos de regressão mais robustos com o objetivo de comparar o desempenho da regressão linear tradicional com métodos que utilizam regularização, especificamente Ridge e Lasso.
 
-1. Foram aplicados três modelos: **Regressão Linear**, **Ridge** e **Lasso**.
-2. Foi utilizada **validação cruzada com 5 folds** (`cross_val_score`) para obter métricas mais robustas.
-3. As métricas **RMSE médio** e **R² médio** foram calculadas para cada modelo.
+Essa etapa teve como foco analisar se a inclusão de regularização poderia melhorar a capacidade de generalização do modelo e reduzir possíveis problemas de overfitting.
+
+1. Preparação dos Dados
+
+O dataset utilizado foi o CarPrice_dataset_ajustado.csv, previamente pré-processado. Para manter a comparação justa entre os modelos, foi utilizada apenas a variável enginesize, mantendo o mesmo cenário da regressão linear simples.
+
+2. Uso de Pipeline e Padronização
+
+Cada modelo foi implementado utilizando um Pipeline, que integra duas etapas principais:
+* Padronização dos dados por meio do StandardScaler, garantindo que a variável explicativa possua média zero e desvio padrão igual a um.
+* Treinamento do modelo de regressão, seja Linear, Ridge ou Lasso.
+  
+O uso de pipelines assegura que o processo de padronização seja corretamente aplicado em cada iteração da validação cruzada, evitando vazamento de dados (data leakage).
+
+3. AValidação Cruzada (Cross-Validation)
+
+Para avaliar o desempenho dos modelos de forma mais robusta, foi aplicada validação cruzada com 5 folds. Nesse processo, o dataset é dividido em cinco partes, e cada modelo é treinado e avaliado cinco vezes, utilizando diferentes subconjuntos de dados para treino e teste.
+
+Foram utilizadas duas métricas de avaliação:
+* RMSE Médio, calculado a partir do erro quadrático médio negativo retornado pelo cross_val_score.
+* R² Médio, que mede o poder explicativo médio do modelo ao longo dos folds.
+
+Essa abordagem reduz a dependência de uma única divisão treino-teste e fornece uma estimativa mais confiável do desempenho dos modelos.
+
 4. Os resultados foram organizados em uma tabela comparativa.
+
+A ordenação dos modelos pelo menor RMSE médio permite identificar qual abordagem apresentou melhor desempenho em termos de erro de previsão.
+```
+Tabela Comparativa dos Modelos:
+
+              Modelo   RMSE Médio  R² Médio
+1   Ridge Regression  4077.913440  0.558653
+2   Lasso Regression  4081.260581  0.557126
+0  Linear Regression  4081.271170  0.557122
+```
+
 5. O melhor modelo foi identificado com base no menor RMSE.
 
-Essa comparação evidencia o impacto da regularização no desempenho dos modelos.
+A comparação entre os modelos de Regressão Linear, Ridge e Lasso, realizada por meio de validação cruzada com 5 folds, mostrou que o Ridge Regression apresentou o melhor desempenho, obtendo o menor valor de RMSE médio e o maior R² médio.
+
+No entanto, a diferença entre os modelos foi relativamente pequena, indicando que todos apresentaram comportamentos semelhantes ao modelar a relação entre enginesize e price. Esse resultado sugere que, ao utilizar apenas uma única variável explicativa, o impacto da regularização é limitado.
+
+Ainda assim, o Ridge Regression demonstrou maior estabilidade e capacidade de generalização, o que justifica sua escolha como o melhor modelo entre os avaliados. Esses resultados reforçam a importância da regularização, mesmo quando os ganhos de desempenho são sutis.
 
 ---
 
@@ -219,38 +255,51 @@ Essa comparação evidencia o impacto da regularização no desempenho dos model
 
 **Arquivo:** `regressao_q4.py`
 
-Por fim, foi realizada a análise de importância das variáveis utilizando o modelo Lasso:
+Na etapa final do projeto, foi utilizada a Regressão Lasso com o objetivo de analisar a importância das variáveis explicativas e identificar quais atributos possuem maior influência na previsão do preço dos veículos.
 
-1. Os dados foram padronizados antes do treinamento do modelo Lasso.
-2. Os coeficientes aprendidos pelo modelo foram extraídos.
-3. Foi calculada a importância absoluta de cada atributo.
-4. Um gráfico de barras horizontais foi gerado para visualizar a importância dos atributos.
-5. Os resultados foram discutidos, destacando quais variáveis têm maior impacto na previsão do preço.
+Diferentemente da regressão linear tradicional, o Lasso aplica regularização L1, que tende a reduzir coeficientes menos relevantes, podendo inclusive zerá-los, tornando-se uma ferramenta eficaz para seleção de atributos.
 
-O Lasso mostrou-se eficiente para seleção automática de atributos, reduzindo a influência de variáveis menos relevantes.
+1. Seleção das variáveis mais revelantes.
+
+Para esta análise, foram selecionadas três variáveis explicativas:
+* enginesize
+* carheight
+* horsepower
+
+Essas variáveis foram escolhidas com base na análise de correlação e em sua relevância técnica para a formação do preço dos veículos.
+
+
+2. Padronização dos Dados.
+
+Antes do treinamento do modelo Lasso, os dados foram padronizados utilizando o StandardScaler. Essa etapa é fundamental, pois a regressão Lasso é sensível à escala das variáveis. A padronização garante que todas as variáveis tenham média zero e desvio padrão igual a um, permitindo uma comparação justa entre os coeficientes.
+
+3. Treinamento do Modelo Lasso.
+
+O modelo Lasso foi treinado utilizando o parâmetro de regularização α = 0.1, valor que equilibra a penalização dos coeficientes sem eliminar completamente variáveis relevantes.
+
+Após o treinamento, os coeficientes associados a cada atributo foram extraídos para análise.
+
+4.Análise dos Coeficientes 
+
+Os coeficientes obtidos pelo modelo Lasso foram organizados em um DataFrame, juntamente com seus valores absolutos, permitindo avaliar a importância relativa de cada variável.
+
+![Inportância dos atributos](imagem/inportância_atributos.png).
+
+O atributo enginesize apresentou o maior coeficiente absoluto, indicando que o tamanho do motor é o fator mais influente entre os avaliados para a determinação do preço dos veículos. Esse resultado é consistente com as análises anteriores de correlação e regressão linear simples, reforçando a importância dessa variável.
+
+Em segundo lugar, horsepower também apresentou uma contribuição significativa, mostrando que a potência do motor exerce um impacto relevante no preço, embora inferior ao tamanho do motor.
+
+A variável carheight, apesar de apresentar influência positiva, teve uma importância consideravelmente menor quando comparada às demais, indicando que seu efeito sobre o preço é mais limitado dentro do conjunto de variáveis analisadas.
 
 ---
 
-## 📊 Conclusão
+## Conclusão 
 
-O projeto demonstrou, de forma prática, todo o fluxo de uma análise de regressão:
+Neste projeto, foi realizada a análise do dataset Car Price Prediction com o objetivo de prever o preço de veículos a partir de suas características. Após o tratamento dos dados, foram aplicados modelos de Regressão Linear Simples, Linear Múltipla, Ridge e Lasso.
 
-* Pré-processamento adequado dos dados;
-* Aplicação de regressão linear simples e múltipla;
-* Comparação entre modelos com e sem regularização;
-* Interpretação dos coeficientes e seleção de atributos relevantes.
+Os resultados mostraram que a variável enginesize possui forte influência no preço dos veículos. Entre os modelos avaliados, o Ridge Regression apresentou o melhor desempenho, indicando que a regularização contribui para melhorar a generalização do modelo. A análise com Lasso também permitiu identificar as variáveis mais importantes para a previsão, reforçando a consistência dos resultados obtidos.
 
-Os resultados obtidos indicam que modelos regularizados, como o Ridge e o Lasso, podem melhorar a generalização e fornecer insights importantes sobre a relevância das variáveis.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Scikit-learn
+O projeto demonstra a aplicação prática de técnicas de regressão e validação de modelos, servindo como base para estudos mais avançados em previsão de preços.
 
 ---
 
