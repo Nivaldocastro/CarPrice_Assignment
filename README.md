@@ -281,7 +281,7 @@ Após o treinamento, os coeficientes associados a cada atributo foram extraídos
 
 Os coeficientes obtidos pelo modelo Lasso foram organizados em um DataFrame, juntamente com seus valores absolutos, permitindo avaliar a importância relativa de cada variável.
 
-![Importância dos atributos](imagem/inportância_atributos.png).
+![Importância dos atributos](imagem/importância_atributos.png).
 
 O atributo enginesize apresentou o maior coeficiente absoluto, indicando que o tamanho do motor é o fator mais influente entre os avaliados para a determinação do preço dos veículos. Esse resultado é consistente com as análises anteriores de correlação e regressão linear simples, reforçando a importância dessa variável.
 
