@@ -51,8 +51,8 @@ Este projeto foi desenvolvido em Python utilizando bibliotecas amplamente empreg
 **Pandas:** Biblioteca utilizada para carregamento, manipulação e análise de dados tabulares.
 Permite ler arquivos CSV, tratar colunas, selecionar variáveis e realizar análises estatísticas básicas.
 
-**Matplotlib:** Biblioteca fundamental para criação de gráficos em Python.
-Foi utilizada para plotar gráficos de dispersão, retas de regressão e gráficos de importância dos atributos.
+**Seaborn:** Biblioteca de visualização estatística baseada no matplotlib.
+Facilita a criação de gráficos mais elegantes, como mapas de correlação, boxplots e distribuições.
 
 **Matplotlib:** Biblioteca fundamental para criação de gráficos em Python.
 Foi utilizada para plotar gráficos de dispersão, retas de regressão e gráficos de importância dos atributos.
