@@ -8,11 +8,12 @@ aplicar um modelo de regressão linear, avaliar seu desempenho, e visualizar a r
 ## 📁 Estrutura do Projeto
 
 ```
-├── preprocessamento.py           # Pré-processamento e correlação
-├── regressao_linear_simples.py   # Regressão linear simples
-├── linear_ridge_lasso.py         # Linear vs Ridge vs Lasso
-├── coeficientes.py               # Coeficientes e seleção de atributos
-├── regressao_ajustado.csv
+├── preprocessamento.py            # Pré-processamento e correlação
+├── regressao_linear_simples.py    # Regressão linear simples
+├── linear_ridge_lasso.py          # Linear vs Ridge vs Lasso
+├── coeficientes.py                # Coeficientes e seleção de atributos
+├── CarPrice_dataset_ajustado.csv  # Dataset ajustado
+├── imagem                         # Imagens de resultados
 └── README.md
 ```
 
@@ -109,13 +110,15 @@ from sklearn.metrics import mean_squared_error, r2_score
 Nesta etapa inicial, foi realizado o preparo dos dados para a modelagem:
 
 1. O dataset original foi carregado.
+
 Inicialmente, o dataset bruto foi carregado utilizando a biblioteca Pandas, e foram realizadas inspeções básicas para compreender sua estrutura:
 * Visualização das primeiras linhas do dataset (head)
 * Verificação dos tipos de dados de cada coluna
 * Verificação de valores ausentes (missing values)
 Essa etapa permitiu confirmar que o dataset não possui valores nulos, eliminando a necessidade de técnicas de imputação.
 
-2. Tratamento de variáveis categóricas
+2. Tratamento de variáveis categóricas.
+
 O dataset contém diversas variáveis categóricas, como tipo de combustível, carroceria, tipo de motor e sistema de combustível. Como modelos de regressão não trabalham diretamente com dados categóricos em formato textual, foi necessário convertê-los para valores numéricos.
 As seguintes colunas categóricas foram identificadas:
 * CarName
@@ -128,14 +131,15 @@ As seguintes colunas categóricas foram identificadas:
 * enginetype
 * cylindernumber
 * fuelsystem
+  
 Para isso, foi utilizado o método `pd.factorize()`, que transforma cada categoria em um valor inteiro único. Esse método foi escolhido por ser simples e suficiente para esta etapa exploratória e de modelagem inicial.
 Após a conversão, todas as colunas do dataset passaram a possuir valores numéricos.
 
 3. Análise de Correlação e matriz de correlação entre as variáveis numéricas e a variável-alvo (`price`).
+
 Com os dados totalmente numéricos, foi realizada uma análise de correlação entre todas as variáveis e a variável alvo price.
 Essa análise teve como objetivo:
-Identificar quais atributos possuem maior relação com o preço dos veículos
-Auxiliar na seleção das variáveis mais relevantes para os modelos de regressão
+Identificar quais atributos possuem maior relação com o preço dos veículos e auxiliar na seleção das variáveis mais relevantes para os modelos de regressão.
 As correlações foram ordenadas de forma decrescente, permitindo identificar rapidamente as variáveis mais correlacionadas positiva ou negativamente com o preço.
 
 ```
@@ -183,15 +187,21 @@ O modelo de Regressão Linear Simples foi treinado utilizando o algoritmo Linear
 Foi gerado um gráfico de dispersão contendo os valores reais do dataset, juntamente com a reta de regressão estimada pelo modelo. Essa visualização permite observar claramente a tendência de crescimento do preço conforme o tamanho do motor aumenta, confirmando o comportamento identificado na análise de correlação.
 
 5. O desempenho do modelo foi avaliado utilizando as métricas **RMSE** e **R²**.
-6. Os resultados foram analisados, permitindo interpretar o poder explicativo do modelo simples.
+
+Para avaliar o desempenho do modelo de forma adequada, o dataset foi dividido em conjuntos de treinamento (80%) e teste (20%). Essa separação garante que a avaliação seja realizada em dados não utilizados durante o treinamento do modelo. Após o treinamento, o modelo foi aplicado ao conjunto de teste, e seu desempenho foi avaliado utilizando duas métricas amplamente empregadas em problemas de regressão:
+* RMSE (Root Mean Squared Error), que mede o erro médio das previsões do modelo.
+O RMSE foi 3932.61. Considerando que o preço médio dos veículos no dataset está em torno de 13.000, esse erro pode ser considerado moderado, sendo esperado para um modelo simples que utiliza apenas uma única variável explicativa.
+
+* R² (Coeficiente de Determinação), que indica a proporção da variabilidade do preço explicada pela regressão linear simples.
+O valor de R² = 0.8041 indica que aproximadamente 80% da variação do preço dos veículos pode ser explicada apenas pelo tamanho do motor. Esse resultado evidencia uma forte relação linear entre enginesize e price, confirmando a relevância dessa variável como principal fator explicativo do preço no dataset.
 
 Essa análise fornece uma visualização clara da relação linear entre a variável escolhida e o preço.
 
 ---
 
-## Questão 3 – Comparação: Linear vs Ridge vs Lasso
+## Comparação: Linear vs Ridge vs Lasso
 
-**Arquivo:** `regressao_q3.py`
+**Arquivo:** `linear_ridge_lasso.py`
 
 Nesta fase, o objetivo foi comparar diferentes modelos de regressão:
 
