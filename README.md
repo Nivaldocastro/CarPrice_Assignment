@@ -48,53 +48,53 @@ Este projeto foi desenvolvido em Python utilizando bibliotecas amplamente empreg
 
 ---
 
-Pandas: Biblioteca utilizada para carregamento, manipulação e análise de dados tabulares.
+**Pandas:** Biblioteca utilizada para carregamento, manipulação e análise de dados tabulares.
 Permite ler arquivos CSV, tratar colunas, selecionar variáveis e realizar análises estatísticas básicas.
 ```python
 import pandas as pd
 ```
-Matplotlib: Biblioteca fundamental para criação de gráficos em Python.
+**Matplotlib:** Biblioteca fundamental para criação de gráficos em Python.
 Foi utilizada para plotar gráficos de dispersão, retas de regressão e gráficos de importância dos atributos.
 ```python
 import seaborn as pd
 ```
-Seaborn: Biblioteca de visualização estatística baseada no matplotlib.
+**Seaborn:** Biblioteca de visualização estatística baseada no matplotlib.
 Facilita a criação de gráficos mais elegantes, como mapas de correlação, boxplots e distribuições.
 ```python
 import matplotlib.pyplot as plt
 ```
-NumPy: Biblioteca fundamental para operações numéricas e matemáticas em Python.
+**NumPy:** Biblioteca fundamental para operações numéricas e matemáticas em Python.
 Foi utilizada para cálculos como o RMSE, manipulação de arrays e operações vetoriais.
 ```python
 import numpy as np
 ```
-train_test_split: Função do scikit-learn utilizada para dividir o dataset em conjuntos de treino e teste, garantindo uma avaliação adequada do modelo.
+**train_test_split:** Função do scikit-learn utilizada para dividir o dataset em conjuntos de treino e teste, garantindo uma avaliação adequada do modelo.
 ```python
 from sklearn.model_selection import train_test_split
 ```
-StandardScaler: Utilizada para padronização dos dados numéricos, fazendo com que todas as variáveis tenham média 0 e desvio padrão 1.
+**StandardScaler:** Utilizada para padronização dos dados numéricos, fazendo com que todas as variáveis tenham média 0 e desvio padrão 1.
 Essa etapa é essencial para modelos sensíveis à escala, como Ridge e Lasso.
 ```python
 from sklearn.preprocessing import StandardScaler
 ```
-LinearRegression: Modelo de Regressão Linear do scikit-learn.
+**LinearRegression:** Modelo de Regressão Linear do scikit-learn.
 Foi aplicado tanto na regressão linear simples quanto na regressão linear múltipla.
 ```python
 from sklearn.linear_model import LinearRegression
 ```
-Ridge Regression: Modelo de regressão linear com regularização L2, utilizado para reduzir overfitting e controlar a magnitude dos coeficientes.
+**Ridge Regression:** Modelo de regressão linear com regularização L2, utilizado para reduzir overfitting e controlar a magnitude dos coeficientes.
 ```python
 from sklearn.linear_model import Ridge
 ```
-Lasso Regression: Modelo de regressão linear com regularização L1, capaz de zerar coeficientes, sendo útil para seleção de atributos e análise de importância das variáveis.
+**Lasso Regression:** Modelo de regressão linear com regularização L1, capaz de zerar coeficientes, sendo útil para seleção de atributos e análise de importância das variáveis.
 ```python
 from sklearn.linear_model import Lasso
 ```
-cross_val_score: Função utilizada para aplicar validação cruzada (cross-validation), permitindo avaliar o desempenho dos modelos de forma mais robusta.
+**cross_val_score:** Função utilizada para aplicar validação cruzada (cross-validation), permitindo avaliar o desempenho dos modelos de forma mais robusta.
 ```python
 from sklearn.model_selection import cross_val_score
 ```
-Métricas de Avaliação: Foram utilizadas métricas para avaliar o desempenho dos modelos de regressão:
+**Métricas de Avaliação:** Foram utilizadas métricas para avaliar o desempenho dos modelos de regressão:
 RMSE (Root Mean Squared Error): mede o erro médio das previsões.
 R² (Coeficiente de Determinação): indica o quanto o modelo explica a variabilidade da variável alvo.
 ```python
@@ -161,7 +161,7 @@ Foi utilizado o método de correlação Spearman, por ser mais robusto a relaç�
 
 ![Matriz de Correlação](imagem/matriz_correlação.png)
 
-4. O dataset final pré-processado foi salvo no arquivo `regressao_ajustado.csv`.
+4. O dataset final pré-processado foi salvo no arquivo `CarPrice_dataset_ajustado.csv`.
 
 Essa etapa é fundamental para garantir qualidade dos dados e evitar vieses nos modelos.
 
@@ -219,7 +219,7 @@ Cada modelo foi implementado utilizando um Pipeline, que integra duas etapas pri
   
 O uso de pipelines assegura que o processo de padronização seja corretamente aplicado em cada iteração da validação cruzada, evitando vazamento de dados (data leakage).
 
-3. AValidação Cruzada (Cross-Validation)
+3. A Validação Cruzada (Cross-Validation)
 
 Para avaliar o desempenho dos modelos de forma mais robusta, foi aplicada validação cruzada com 5 folds. Nesse processo, o dataset é dividido em cinco partes, e cada modelo é treinado e avaliado cinco vezes, utilizando diferentes subconjuntos de dados para treino e teste.
 
@@ -251,7 +251,7 @@ Ainda assim, o Ridge Regression demonstrou maior estabilidade e capacidade de ge
 
 ---
 
-## Questão 4 – Coeficientes e Seleção de Atributos
+## Coeficientes e Seleção de Atributos com Lasso
 
 **Arquivo:** `regressao_q4.py`
 
@@ -259,7 +259,7 @@ Na etapa final do projeto, foi utilizada a Regressão Lasso com o objetivo de an
 
 Diferentemente da regressão linear tradicional, o Lasso aplica regularização L1, que tende a reduzir coeficientes menos relevantes, podendo inclusive zerá-los, tornando-se uma ferramenta eficaz para seleção de atributos.
 
-1. Seleção das variáveis mais revelantes.
+1. Seleção das variáveis mais relevantes.
 
 Para esta análise, foram selecionadas três variáveis explicativas:
 * enginesize
@@ -283,7 +283,7 @@ Após o treinamento, os coeficientes associados a cada atributo foram extraídos
 
 Os coeficientes obtidos pelo modelo Lasso foram organizados em um DataFrame, juntamente com seus valores absolutos, permitindo avaliar a importância relativa de cada variável.
 
-![Inportância dos atributos](imagem/inportância_atributos.png).
+![Importância dos atributos](imagem/inportância_atributos.png).
 
 O atributo enginesize apresentou o maior coeficiente absoluto, indicando que o tamanho do motor é o fator mais influente entre os avaliados para a determinação do preço dos veículos. Esse resultado é consistente com as análises anteriores de correlação e regressão linear simples, reforçando a importância dessa variável.
 
