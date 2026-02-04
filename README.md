@@ -155,29 +155,35 @@ highwaympg         -0.697599
 Além da correlação individual com a variável alvo, foi construída uma matriz de correlação completa, considerando todas as colunas numéricas do dataset.
 Foi utilizado o método de correlação Spearman, por ser mais robusto a relações não lineares e valores extremos.
 
-![Matriz de Correlação](images/matriz_correlação.png)
+![Matriz de Correlação](imagem/matriz_correlação.png)
 
-
-
-4. Com base na correlação, foi possível identificar quais atributos possuem maior relação com o preço.
-5. Os dados numéricos foram padronizados utilizando o `StandardScaler`, garantindo média zero e desvio padrão igual a um.
-6. O dataset final pré-processado foi salvo no arquivo `regressao_ajustado.csv`.
+4. O dataset final pré-processado foi salvo no arquivo `regressao_ajustado.csv`.
 
 Essa etapa é fundamental para garantir qualidade dos dados e evitar vieses nos modelos.
 
 ---
 
-## Questão 2 – Regressão Linear Simples
+## Regressão Linear Simples
 
-**Arquivo:** `regressao_q2.py`
+**Arquivo:** `regressao_linear_simples.py`
 
-Nesta etapa, foi aplicada a regressão linear simples com o objetivo de entender a relação entre uma variável explicativa e o preço:
+Nesta etapa, foi aplicada a regressão linear simples com o objetivo de entender a relação entre uma variável explicativa e o preço.
+Após a etapa de pré-processamento e análise de correlação, foi aplicada uma Regressão Linear Simples com o objetivo de modelar a relação entre o preço dos veículos (`price`) e a variável `enginesize`, identificada como a mais correlacionada com a variável alvo.
 
-1. Foi utilizado o modelo de **Regressão Linear** da biblioteca `scikit-learn`.
-2. A variável mais correlacionada com o preço foi escolhida para o modelo.
-3. Um gráfico foi gerado exibindo os pontos reais e a reta de regressão ajustada.
-4. O desempenho do modelo foi avaliado utilizando as métricas **RMSE** e **R²**.
-5. Os resultados foram analisados, permitindo interpretar o poder explicativo do modelo simples.
+1. A variável mais correlacionada com o preço foi escolhida para o modelo.
+A variável `enginesize` foi selecionada como única variável explicativa do modelo, enquanto `price` foi definida como variável alvo. A escolha dessa feature foi baseada na análise prévia de correlação, que indicou uma forte relação positiva entre essas duas variáveis.
+
+2. Uso do LinearRegression
+O modelo de Regressão Linear Simples foi treinado utilizando o algoritmo LinearRegression da biblioteca scikit-learn. Inicialmente, o modelo foi ajustado utilizando todo o conjunto de dados com a finalidade de visualizar a relação linear entre as variáveis por meio de um gráfico.
+
+4. Um gráfico foi gerado exibindo os pontos reais e a reta de regressão ajustada.
+
+![Reta de Regressão](imagem/reta_de_regressão.png).
+
+Foi gerado um gráfico de dispersão contendo os valores reais do dataset, juntamente com a reta de regressão estimada pelo modelo. Essa visualização permite observar claramente a tendência de crescimento do preço conforme o tamanho do motor aumenta, confirmando o comportamento identificado na análise de correlação.
+
+5. O desempenho do modelo foi avaliado utilizando as métricas **RMSE** e **R²**.
+6. Os resultados foram analisados, permitindo interpretar o poder explicativo do modelo simples.
 
 Essa análise fornece uma visualização clara da relação linear entre a variável escolhida e o preço.
 
