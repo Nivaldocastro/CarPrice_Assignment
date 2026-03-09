@@ -1,4 +1,4 @@
-# Aplicando Regressão Linear x Ridge x Lasso para prever o preço de veículos
+#  Car Price - Analise de Regressões
 
 Este projeto tem como objetivo aplicar técnicas de **regressão linear** para prever o preço de veículos, seguindo uma sequência estruturada de pré-processamento, modelagem, avaliação e interpretação dos resultados. O trabalho foi desenvolvido com base no dataset Car Price Prediction, disponibilizado no Kaggle. O foco do projeto não é uma análise exploratória aprofundada, mas sim compreender o dataset, preparar os dados corretamente,
 aplicar um modelo de regressão linear, avaliar seu desempenho, e visualizar a relação entre a variável mais correlacionada e o preço.
